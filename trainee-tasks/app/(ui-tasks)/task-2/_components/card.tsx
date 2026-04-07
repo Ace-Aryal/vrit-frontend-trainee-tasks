@@ -55,7 +55,8 @@ function Task2Card({
       onClick={() => setActiveCardIndex(index)}
       className={cn(
         `w-70  rounded-4xl  h-115 flex flex-col  justify-between items-center
-          p-10 cursor-pointer`
+          p-10 cursor-pointer`,
+        {  "relative z-10" : !isActive}
       )}
     >
       {/* additional contents on active */}
