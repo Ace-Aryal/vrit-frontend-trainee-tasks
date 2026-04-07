@@ -86,7 +86,7 @@ function PostCard({ post }: { post: Post }) {
       </div>
       <pre
         className={cn(
-          "mt-3 text-sm font-sans leading-6 text-muted-foreground sm:text-base line-clamp-1 trainsition-all",
+          "mt-3 text-sm font-sans leading-6 text-muted-foreground sm:text-base line-clamp-1 whitespace-pre-wrap",
           !isCollapsed && "line-clamp-none",
         )}
       >
