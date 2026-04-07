@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Task3Card from "./_components/card";
+import Task2Card from "./_components/card";
 import {courseConfig} from "../_configs/task-two-config"
 function Task3Page() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   return (
-    <div className=" flex flex-col space-y-16 mx-auto">
+    <div className=" flex flex-col space-y-16 mx-auto overflow-x-clip">
       <section className="flex flex-col gap-4 ">
         <h1 className="text-2xl text-[#414141] font-semibold">
           {" "}
@@ -19,7 +19,7 @@ function Task3Page() {
       </section>
       <section className="flex space-x-8">
         {courseConfig.map((course, index) => (
-          <Task3Card
+          <Task2Card
             activeCardIndex={activeCardIndex}
             setActiveCardIndex={setActiveCardIndex}
             key={course.heading}

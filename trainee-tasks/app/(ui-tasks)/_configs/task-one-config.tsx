@@ -4,7 +4,7 @@ import {
   SecondCardComponentTwo,
 } from "../task-1/_components/inner-contents";
 
-export const TASK_TWO_CONFIG = [
+export const TASK_ONE_CONFIG = [
   {
     heading: "Start with Clarity",
     subHeading: "Step into a better learning path.",

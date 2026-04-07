@@ -6,7 +6,7 @@ import React from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-type Task3CardProps = {
+type Task2CardProps = {
   heading: string;
   index: number;
   subHeading: string;
@@ -14,14 +14,14 @@ type Task3CardProps = {
   activeCardIndex: number;
   setActiveCardIndex: React.Dispatch<React.SetStateAction<number>>;
 };
-function Task3Card({
+function Task2Card({
   heading,
   index,
   subHeading,
   noOfCourses,
   activeCardIndex,
   setActiveCardIndex,
-}: Task3CardProps) {
+}: Task2CardProps) {
   const isActive = index === activeCardIndex;
   return (
     //  top level div that transforms scales up and down with changing colors
@@ -55,7 +55,7 @@ function Task3Card({
       onClick={() => setActiveCardIndex(index)}
       className={cn(
         `w-70  rounded-4xl  h-115 flex flex-col  justify-between items-center
-          p-10`
+          p-10 cursor-pointer`
       )}
     >
       {/* additional contents on active */}
@@ -88,12 +88,19 @@ function Task3Card({
             </motion.div>
           </Link>
           <motion.div
+          layoutId="tech-stack"
+          layout="preserve-aspect"
             initial={{
               opacity: 0,
             }}
             animate={{
               opacity: 1,
             }}
+            transition={
+              {
+                type:"tween"
+              }
+            }
             className="w-full justify-center items-center"
           >
             <TechStakSVG />
@@ -227,7 +234,7 @@ function Task3Card({
   );
 }
 
-export default Task3Card;
+export default Task2Card;
 
 // long long svg from figma for tech stack logo in task 3 card details view
 function TechStakSVG() {

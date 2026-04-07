@@ -117,6 +117,28 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.animate-vertical-marquee {
+  animation: vertical-marquee 5000ms linear 200ms infinite;
+}
+@keyframes vertical-marquee {
+  0% {
+    transform: translateY(-7px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-7px);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

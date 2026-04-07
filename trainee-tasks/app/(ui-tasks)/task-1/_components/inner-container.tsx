@@ -29,7 +29,7 @@ function InnerContainer({
      
       "
       >
-        <div
+        <button
           onClick={() => {
             setCurrentContent((prev) => {
               // slider logic --
@@ -45,13 +45,13 @@ function InnerContainer({
           className="w-18 h-18 z-10 hover:bg-gray-100 cursor-pointer shadow-md flex justify-center items-center bg-background rounded-full absolute left-8"
         >
           <ArrowLeft className="w-8  h-8 text-gray-500" />
-        </div>
+        </button>
       </div>
       <div
         className="absolute h-1/3 w-[22.75%] flex justify-center items-center rounded-full top-1/2 -translate-y-1/2 -right-8  bg-white 
       "
       >
-        <div
+        <button
           onClick={() => {
             setCurrentContent((prev) => {
               // slider logic ++
@@ -68,7 +68,7 @@ function InnerContainer({
           className="w-18 hover:bg-gray-100 h-18 z-10 shadow-md cursor-pointer  flex justify-center items-center bg-white rounded-full absolute right-8"
         >
           <ArrowRight className="w-8 h-8   text-gray-500" />
-        </div>
+        </button>
       </div>
       <div className={cn("bg-red-500 flex-1 -z-10 rounded-3xl", bgColor)} />
       <div className={cn("bg-red-500 flex-1 -z-10 rounded-3xl", bgColor)} />

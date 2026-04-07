@@ -1,6 +1,6 @@
 import React from "react";
 import OuterConatiner from "./_components/outer-container";
-import { TASK_TWO_CONFIG } from "../_configs/task-one-config";
+import { TASK_ONE_CONFIG } from "../_configs/task-one-config";
 
 function Task2Page() {
   return (
@@ -10,14 +10,14 @@ function Task2Page() {
           Your SkillShikshya Jourey
         </h1>
         <h2 className="text-[2rem] font-bold text-[#2B2B2B]">
-          <span className="text-[#1DA077]">Step</span> In.{" "}
+          <span className="text-[#1DA077] font-mons">Step</span> In.{" "}
           <span className="text-[#1DA077]">Skill</span> Up.{" "}
           <span className="text-[#1DA077]">Stand</span> Out. 🚀
         </h2>
       </div>
 
       <div className="grid  grid-cols-2 gap-10 space-y-4 w-fit ">
-        {TASK_TWO_CONFIG.map((config, index) => {
+        {TASK_ONE_CONFIG.map((config, index) => {
           const { heading, subHeading, paragraph, bgColor, content, svg } =
             config;
           const isEven = (index + 1) % 2 === 0;
