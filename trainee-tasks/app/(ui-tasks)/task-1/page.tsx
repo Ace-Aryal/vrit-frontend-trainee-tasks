@@ -2,9 +2,9 @@ import React from "react";
 import OuterConatiner from "./_components/outer-container";
 import { TASK_ONE_CONFIG } from "../_configs/task-one-config";
 
-function Task2Page() {
+function TaskOnePage() {
   return (
-    <div className="max-w-screen px-12 mx-auto">
+    <div className="max-w-7xl px-12 mx-auto">
       <div className="mb-12 space-y-5">
         <h1 className=" text-2xl text-[#414141] font-semibold">
           Your SkillShikshya Jourey
@@ -39,4 +39,4 @@ function Task2Page() {
   );
 }
 
-export default Task2Page;
+export default TaskOnePage;

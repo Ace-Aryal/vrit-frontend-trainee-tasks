@@ -6,7 +6,7 @@ function Task3Page() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   return (
-    <div className=" flex flex-col space-y-16 mx-auto overflow-x-clip">
+    <div className=" flex flex-col space-y-16 mx-auto max-w-6xl pb-16 overflow-x-clip">
       <section className="flex flex-col gap-4 ">
         <h1 className="text-2xl text-[#414141] font-semibold">
           {" "}

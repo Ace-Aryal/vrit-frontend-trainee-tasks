@@ -5,47 +5,33 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 const navbarConfig = [
   {
-    label: "Task1",
-    href: "/",
+    label: "Task 1",
+    href: "/task-1",
   },
   {
-    label: "Task2",
+    label: "Task 2",
     href: "/task-2",
   },
   {
-    label: "Task3",
-    href: "/task-3",
+    label: "Users Posts",
+    href: "/users",
   },
   {
-    label: "Task4",
-    href: "/video-assesment",
-  },
-  {
-    label: "Easy",
-    href: "/easy",
-  },
-  {
-    label: "Intermediate",
-    href: "/intermediate",
-  },
-  {
-    label: "Debug JS",
-    href: "/debuggingJS",
-  },
-  {
-    label: "Debug React",
-    href: "/debuggingReact",
+    label: "My Posts",
+    href: "/my-posts",
   },
 ];
 function Navbar() {
   const pathname = usePathname();
   return (
-    <nav
-      className="flex justify-start px-16 items-center w-full gap-6 h-12 border-b border-gray-300 
+    <header
+      className="flex justify-between md:justify-start px-2 sm:px-16 items-center w-full gap-3 sm:gap-6 h-12 border-b border-gray-300 
     shadow"
     >
       {navbarConfig.map((navItem) => {
-        const isActive = navItem.href === pathname;
+        const isActive =
+          navItem.href === pathname ||
+          (pathname.includes(navItem.href) && pathname !== "/");
         return (
           <Link
             key={navItem.href}
@@ -58,7 +44,7 @@ function Navbar() {
           </Link>
         );
       })}
-    </nav>
+    </header>
   );
 }
 
