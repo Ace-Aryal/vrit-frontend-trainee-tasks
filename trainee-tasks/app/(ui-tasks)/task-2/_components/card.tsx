@@ -50,7 +50,8 @@ function Task2Card({
             }
       }
       transition={{
-        duration: 0.4
+        duration: 0.4,
+
       }}
       onClick={() => setActiveCardIndex(index)}
       className={cn(
@@ -99,7 +100,9 @@ function Task2Card({
             }}
             transition={
               {
-                type:"tween"
+                type:"tween",
+      ease: [0.65, 0, 0.35, 1]
+
               }
             }
             className="w-full justify-center items-center"
