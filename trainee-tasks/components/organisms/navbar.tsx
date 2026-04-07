@@ -25,7 +25,7 @@ function Navbar() {
   const pathname = usePathname();
   return (
     <header
-      className="flex justify-between md:justify-start px-2 sm:px-16 items-center w-full gap-3 sm:gap-6 h-12 border-b border-gray-300 
+      className="flex justify-between md:justify-start px-2 sm:px-16 items-center w-full gap-3 sm:gap-6 h-12 border-b border-gray-300 sticky bg-white top-0 z-50
     shadow"
     >
       {navbarConfig.map((navItem) => {

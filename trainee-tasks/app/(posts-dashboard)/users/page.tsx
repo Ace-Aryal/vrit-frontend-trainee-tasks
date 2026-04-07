@@ -83,7 +83,9 @@ export default function UsersPage() {
   return (
     <section className="mx-auto max-w-6xl sm:px-4 py-4 sm:py-8">
       <PageHeading />
+      {/* search bar */}
       <Input
+        type="search"
         className="w-full max-w-sm mt-2"
         placeholder="Search user via email or name"
         value={search}
