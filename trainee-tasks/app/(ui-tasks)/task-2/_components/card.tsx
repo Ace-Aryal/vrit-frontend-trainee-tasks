@@ -50,7 +50,7 @@ function Task2Card({
             }
       }
       transition={{
-        duration: 0.4,
+        duration: 0.4
       }}
       onClick={() => setActiveCardIndex(index)}
       className={cn(
@@ -70,7 +70,7 @@ function Task2Card({
                 x: 0,
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.4,
               }}
               whileHover="hovered"
               className="text-right flex gap-2"
@@ -194,15 +194,16 @@ function Task2Card({
           </motion.div>
         )}
         {/*  original texts : rotates dynamically*/}
-        <motion.div
+       {isActive && <motion.div
           initial={{
             rotate: 270,
           }}
+          layoutId={`card-heading-${index}`}
           animate={{
-            rotate: isActive ? 360 : 270,
+            rotate: 360
           }}
           transition={{
-            duration: 1,
+            duration: 0.6,
             type: "spring",
           }}
           className={cn("h-60 w-55 flex flex-col  gap-3   justify-center ", {
@@ -211,7 +212,27 @@ function Task2Card({
         >
           <h3 className="text-[2rem] font-bold leading-tight ">{heading}</h3>
           <p className=" w-full text-lg">{subHeading}</p>
-        </motion.div>
+        </motion.div>}
+       {!isActive && <motion.div
+          layoutId={`card-heading-${index}`}
+
+          initial={{
+            rotate: 360,
+          }}
+          animate={{
+            rotate: 270
+          }}
+          transition={{
+            duration:0.6,
+            type: "spring",
+          }}
+          className={cn("h-60 w-55 flex flex-col  gap-3   justify-center ", {
+            "w-full": isActive,
+          })}
+        >
+          <h3 className="text-[2rem] font-bold leading-tight ">{heading}</h3>
+          <p className=" w-full text-lg">{subHeading}</p>
+        </motion.div>}
         <p className="text-[9.3rem] tracking-tighter font-bold leading-none relative">
           {noOfCourses.toString().padStart(2, "0")}
           <motion.span
