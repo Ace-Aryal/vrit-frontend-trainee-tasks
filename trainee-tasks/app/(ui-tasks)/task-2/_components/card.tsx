@@ -3,7 +3,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 type Task2CardProps = {
@@ -51,13 +51,12 @@ function Task2Card({
       }
       transition={{
         duration: 0.4,
-
       }}
       onClick={() => setActiveCardIndex(index)}
       className={cn(
-        `w-70  rounded-4xl  h-115 flex flex-col  justify-between items-center
+        `w-70  rounded-4xl  h-115 flex flex-col relative  justify-between items-center
           p-10 cursor-pointer`,
-        {  "relative z-10" : !isActive}
+        { " z-10": !isActive },
       )}
     >
       {/* additional contents on active */}
@@ -90,21 +89,18 @@ function Task2Card({
             </motion.div>
           </Link>
           <motion.div
-          layoutId="tech-stack"
-          layout="preserve-aspect"
+            layoutId="tech-stack"
+            layout="preserve-aspect"
             initial={{
               opacity: 0,
             }}
             animate={{
               opacity: 1,
             }}
-            transition={
-              {
-                type:"tween",
-      ease: [0.65, 0, 0.35, 1]
-
-              }
-            }
+            transition={{
+              type: "tween",
+              ease: [0.65, 0, 0.35, 1],
+            }}
             className="w-full justify-center items-center"
           >
             <TechStakSVG />
@@ -118,14 +114,12 @@ function Task2Card({
             ? {
                 height: "35%",
                 width: "100%",
-                backgroundColor: "#C33241",
                 flexDirection: "row-reverse",
                 color: "white",
                 gap: "2rem",
               }
             : {
                 width: "100%",
-                backgroundColor: "#F9EBEC",
                 flexDirection: "column",
                 color: "#C33241",
                 height: "28.75rem",
@@ -136,8 +130,8 @@ function Task2Card({
         }}
         whileHover="hovered"
         className={cn(
-          `w-full  relative h-115 flex   justify-end items-center
-          `
+          `w-full  relative h-115  
+          `,
         )}
       >
         {/* click me svg conditionally renderd */}
@@ -198,63 +192,78 @@ function Task2Card({
           </motion.div>
         )}
         {/*  original texts : rotates dynamically*/}
-       {isActive && <motion.div
-          initial={{
-            rotate: 270,
-          }}
-          layoutId={`card-heading-${index}`}
-          animate={{
-            rotate: 360
-          }}
-          transition={{
-            duration: 0.6,
-            type: "spring",
-          }}
-          className={cn("h-60 w-55 flex flex-col  gap-3   justify-center ", {
-            "w-full": isActive,
-          })}
-        >
-          <h3 className="text-[2rem] font-bold leading-tight ">{heading}</h3>
-          <p className=" w-full text-lg">{subHeading}</p>
-        </motion.div>}
-       {!isActive && <motion.div
-          layoutId={`card-heading-${index}`}
+        <AnimatePresence>
+          {isActive && (
+            <motion.div
+              initial={{
+                rotate: 315,
+                y: -145,
+                x: 10,
+              }}
+              animate={{
+                rotate: 360,
+                y: [-160, -160, -160, -60, 0, 30, 20, 0],
+                x: [30, 50, 0],
+              }}
+              transition={{
+                duration: 0.3,
+                type: "keyframes",
+              }}
+              className={cn(
+                "h-60 w-72 flex flex-col  gap-3 absolute -translate-y-[50%] top-1/2  right-0  justify-center ",
+              )}
+            >
+              <h3 className="text-[2rem] font-bold leading-tight ">
+                {heading}
+              </h3>
+              <p className=" w-full text-lg">{subHeading}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-          initial={{
-            rotate: 360,
-          }}
-          animate={{
-            rotate: 270
-          }}
-          transition={{
-            duration:0.6,
-            type: "spring",
-          }}
-          className={cn("h-60 w-55 flex flex-col  gap-3   justify-center ", {
-            "w-full": isActive,
-          })}
-        >
-          <h3 className="text-[2rem] font-bold leading-tight ">{heading}</h3>
-          <p className=" w-full text-lg">{subHeading}</p>
-        </motion.div>}
-        <p className="text-[9.3rem] tracking-tighter font-bold leading-none relative">
-          {noOfCourses.toString().padStart(2, "0")}
-          <motion.span
+        {!isActive && (
+          <motion.div
             initial={{
-              y: 0,
+              rotate: 360,
+              x: 100,
             }}
-            whileHover={{
-              y: 4,
+            animate={{
+              rotate: 270,
+              x: [70, 0],
             }}
             transition={{
-              duration: 0.25,
+              duration: 0.6,
+              type: "spring",
             }}
-            className="absolute font-extrabold text-[5rem] -right-7 -top-7"
+            className={cn(
+              "h-60 w-55 flex flex-col  gap-3 absolute -top-10 -translate-x-[50%] left-1/2   justify-center ",
+              {
+                "w-full": isActive,
+              },
+            )}
           >
-            +
-          </motion.span>
-        </p>
+            <h3 className="text-[2rem] font-bold leading-tight ">{heading}</h3>
+            <p className=" w-full text-lg">{subHeading}</p>
+          </motion.div>
+        )}
       </motion.div>
+      <p className="text-[9.3rem] tracking-tighter font-bold leading-none  absolute bottom-10 left-10">
+        {noOfCourses.toString().padStart(2, "0")}
+        <motion.span
+          initial={{
+            y: 0,
+          }}
+          whileHover={{
+            y: 4,
+          }}
+          transition={{
+            duration: 0.25,
+          }}
+          className="absolute font-extrabold text-[5rem] -right-7 -top-7"
+        >
+          +
+        </motion.span>
+      </p>
     </motion.div>
   );
 }
