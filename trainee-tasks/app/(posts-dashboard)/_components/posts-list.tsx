@@ -2,10 +2,18 @@
 
 import { cn } from "@/lib/utils";
 import { Post } from "@/types/posts";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  PenBox,
+  Trash2,
+} from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import PostFormDialog from "./post-form";
+import { useMyPostsStore } from "@/store/my-posts-store";
 
 export default function UserPostsList({ posts }: { posts: Post[] }) {
   // this component uses client side pagination for list rendering optimization only, not backend controlled pagination
@@ -16,13 +24,13 @@ export default function UserPostsList({ posts }: { posts: Post[] }) {
     posts.length === 0 ? 0 : Math.ceil(posts.length / PAGINATION_LIMIT);
   const currentPagePosts = posts.slice(offset, offset + PAGINATION_LIMIT);
   return (
-    <div className="mt-6 space-y-4">
+    <div className="mt-6 space-y-4 ">
       {currentPagePosts?.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
       <div className="flex  justify-between text-sm">
         <p>
-          Page {currentPage} / {totalPages}
+          Page {totalPages === 0 ? 0 : currentPage} / {totalPages}
         </p>
         <div className="flex gap-2 items-center ">
           <Button
@@ -31,7 +39,7 @@ export default function UserPostsList({ posts }: { posts: Post[] }) {
                 setCurrentPage((prev) => prev - 1);
               }
             }}
-            disabled={currentPage === 1}
+            disabled={currentPage <= 1}
             size={"sm"}
             variant={"outline"}
           >
@@ -44,7 +52,7 @@ export default function UserPostsList({ posts }: { posts: Post[] }) {
                 setCurrentPage((prev) => prev + 1);
               }
             }}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === totalPages || totalPages === 0}
             size={"sm"}
             variant={"outline"}
           >
@@ -58,6 +66,8 @@ export default function UserPostsList({ posts }: { posts: Post[] }) {
 
 function PostCard({ post }: { post: Post }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isEditFormDialogOpen, setIsEditDialogOpen] = useState(false);
+  const { deletePost } = useMyPostsStore();
   return (
     // semantic article tag
     <article
@@ -65,9 +75,32 @@ function PostCard({ post }: { post: Post }) {
       key={post.id}
       className="rounded-xl border border-border/80 bg-card p-4 shadow-sm cursor-pointer"
     >
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between gap-1 ">
         <h2 className="text-base font-bold sm:text-lg flex-1">{post.title}</h2>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            deletePost(post.id);
+          }}
+          size={"sm"}
+          variant={"ghost"}
+          className="cursor-pointer"
+        >
+          <Trash2 className="text-red-600 " />
+        </Button>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsEditDialogOpen(true);
+          }}
+          size={"sm"}
+          variant={"ghost"}
+          className="cursor-pointer"
+        >
+          <PenBox className="text-blue-500 " />
+        </Button>
         <motion.button
+          className="cursor-pointer"
           initial={{
             rotate: 0,
           }}
@@ -92,6 +125,12 @@ function PostCard({ post }: { post: Post }) {
       >
         {post.body}
       </pre>
+      <PostFormDialog
+        closeDialog={() => setIsEditDialogOpen(false)}
+        mode="EDIT"
+        initialData={post}
+        open={isEditFormDialogOpen}
+      />
     </article>
   );
 }

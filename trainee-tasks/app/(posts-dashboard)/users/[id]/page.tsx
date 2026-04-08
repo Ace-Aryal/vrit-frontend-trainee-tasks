@@ -39,7 +39,7 @@ export default function UserPostsPage() {
   // error handling
   if (isPostsFetchingError) {
     return (
-      <section className="mx-auto max-w-4xl px-4 py-8">
+      <section className="mx-auto max-w-3xl px-4 py-8">
         <PageHeading username={username} />
         <div className="mt-6 rounded-2xl border border-destructive/30 bg-destructive/5 p-6 shadow-sm">
           <div className="flex items-center gap-3">
@@ -66,7 +66,7 @@ export default function UserPostsPage() {
   // empty state
   if (posts?.length === 0) {
     return (
-      <section className="mx-auto max-w-4xl px-4 py-8">
+      <section className="mx-auto max-w-3xl px-4 py-8">
         <PageHeading username={username} />
         <div className="mt-6 flex flex-col items-center rounded-2xl border border-border/80 bg-card px-5 py-12 text-center shadow-sm">
           <div className="rounded-full bg-muted p-3 text-muted-foreground">
@@ -82,7 +82,7 @@ export default function UserPostsPage() {
   }
   // main content
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8">
+    <section className="mx-auto max-w-3xl px-4 py-8">
       <PageHeading username={username} />
       <div className="mt-6 space-y-4">
         <UserPostsList posts={posts || []} />
