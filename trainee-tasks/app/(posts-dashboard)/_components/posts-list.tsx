@@ -77,28 +77,33 @@ function PostCard({ post }: { post: Post }) {
     >
       <div className="flex items-center justify-between gap-1 ">
         <h2 className="text-base font-bold sm:text-lg flex-1">{post.title}</h2>
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            deletePost(post.id);
-          }}
-          size={"sm"}
-          variant={"ghost"}
-          className="cursor-pointer"
-        >
-          <Trash2 className="text-red-600 " />
-        </Button>
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsEditDialogOpen(true);
-          }}
-          size={"sm"}
-          variant={"ghost"}
-          className="cursor-pointer"
-        >
-          <PenBox className="text-blue-500 " />
-        </Button>
+        {post.userId === "me" && (
+          <>
+            {" "}
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                deletePost(post.id);
+              }}
+              size={"sm"}
+              variant={"ghost"}
+              className="cursor-pointer"
+            >
+              <Trash2 className="text-red-600 " />
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsEditDialogOpen(true);
+              }}
+              size={"sm"}
+              variant={"ghost"}
+              className="cursor-pointer"
+            >
+              <PenBox className="text-blue-500 " />
+            </Button>
+          </>
+        )}
         <motion.button
           className="cursor-pointer"
           initial={{
